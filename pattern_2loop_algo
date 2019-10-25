@@ -1,0 +1,6 @@
+repeat i = 0 to n 
+    repeat j = 0 to 2n+1 
+        countInRow = i+1
+        firstPosition= n-i
+        if(j===firstPosition || (j>firstPosition && (firstPosition-j)%2=0 && countInRow)) print 1 --countInRow
+        else print 0
