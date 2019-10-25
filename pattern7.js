@@ -5,11 +5,11 @@ const printPattern =(count)=>{
     let lineString=""
     for(i=0;i<count; i++) {
         complexity++
-        for(j=0;j<count-i; j++) {
+        for(j=0;j<i; j++) {
             complexity++
             lineString+=" "
         }
-        for(k=0;k<i+1;k++) {
+        for(k=0;k<(count-i);k++) {
             complexity++
             lineString+=(i+1+" ")
         }
