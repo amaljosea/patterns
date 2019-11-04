@@ -5,17 +5,11 @@ const printPattern=(rowCount)=>{
     for(i=0;i<totalIterationCount;i++) {
         rowOutput=""    
         if(i<rowCount) {
-            for(k=0;k<rowCount-i;k++) {
-                rowOutput+=" " 
-            }
-            for(j=0;j<(2*i)+1;j++) {
+            for(j=0;j<=i;j++) {
                 rowOutput+="*" 
             }
         } else {
-            for(k=0;k<i-rowCount+2;k++) {
-                rowOutput+=" " 
-            }
-            for(l=0;l<2*(totalIterationCount-1-i)+1;l++) {
+            for(l=0;l<=totalIterationCount-1-i;l++) {
                 rowOutput+="*" 
             }            
         }   
