@@ -45,16 +45,13 @@ const printPattern3 = count => {
   console.log("\n===printPattern3===\n");
   let complexity =0
   let lineString=""
-  let countInRow= 0
   let firstPosition = 0
   for(i=0;i<count; i++) {
-      countInRow = i+1
       for(j=0;j<=count+i; j++) {
           complexity++
           firstPosition=count-i
-          if(j===firstPosition || (j>firstPosition && (firstPosition-j)%2===0  && countInRow)){
+          if(j===firstPosition || (j>firstPosition && (firstPosition-j)%2===0)){
                lineString+=i+1 
-               --countInRow
           }
           else lineString+=" "
       }
@@ -64,6 +61,10 @@ const printPattern3 = count => {
   console.log("\ncomplexity:", complexity);
 };
 
-printPattern1(9);
-printPattern2(9);
-printPattern3(9);
+const start = (num) =>{
+  printPattern1(num);
+  printPattern2(num);
+  printPattern3(num);
+}
+
+start(9)
