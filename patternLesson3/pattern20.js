@@ -20,5 +20,5 @@ const printPattern =(count)=>{
     console.log("complexity:", complexity)
 }
 
-printPattern(33)
+printPattern(10)
 
