@@ -7,7 +7,8 @@ const printPattern =(count)=>{
         complexity++
         for(k=0;k<count;k++) {
             complexity++
-            lineString+="*"
+            if(k===0||k===count-1||i===0||i===count-1) lineString+="*"
+                else lineString+=" "
         }
         console.log(lineString)
         lineString=""
