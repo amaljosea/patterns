@@ -1,14 +1,43 @@
 <html>
-  <head> </head>
+  <head>
+    <link rel="stylesheet" href="index.css" />
+  </head>
   <body>
-    My body
+    <div id="header"></div>
+    <div id="line"></div>
     <div id="content-div"></div>
   </body>
+
+
+
   <script>
+    debugger;
     console.log = item => {
-      document.getElementById("content-div").innerHTML +=
+      document.getElementById("header").innerHTML +=
         item.replace(/ /g, "&nbsp&nbsp") + "<br>";
     };
-  </script>
-  <script src="./pattern1.js"></script>
+    debugger;
+  </script> 
+   <script src="../letters/p.js"></script>
+
+   <script>
+      debugger;
+      console.log = item => {
+        document.getElementById("content-div").innerHTML +=
+          item.replace(/ /g, "&nbsp&nbsp") + "<br>";
+      };
+      debugger;
+    </script> 
+     <script src="./pattern1.js"></script>
+
+
+     <script>
+        debugger;
+        console.log = item => {
+          document.getElementById("line").innerHTML +=
+            item.replace(/ /g, "&nbsp&nbsp") + "<br>";
+        };
+        debugger;
+    </script>
+    <script src="../geometry/line.js"></script>
 </html>
