@@ -3,9 +3,12 @@ import Layout from "../components/layout"
 import { graphql } from "gatsby"
 
 
-export default ({ data }) => (
+export default ({ data }) => {
+  console.log(">>>>>>>",data)
+  return(
   <Layout>
-    <h1>{data.site.siteMetadata.title}</h1>
+    <h1>data</h1>
+    {data.allFile.edges.map((item)=><p key={item.id}>{item.node.relativePath}</p>)}
     <div>
       <img
         src="https://2.bp.blogspot.com/-BMP2l6Hwvp4/TiAxeGx4CTI/AAAAAAAAD_M/XlC_mY3SoEw/s1600/panda-group-eating-bamboo.jpg"
@@ -14,13 +17,18 @@ export default ({ data }) => (
     </div>
   </Layout>
 )
-
+}
 export const query = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
+query MyQuery {
+  allFile {
+    edges {
+      node {
+        name
+        id
+        size
+        relativePath
+        absolutePath
       }
     }
   }
-`
+}`
