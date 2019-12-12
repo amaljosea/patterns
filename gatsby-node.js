@@ -1,7 +1,8 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
+const fs = require(`fs-extra`)
 
-exports.onCreateNode = ({ node, getNode, actions }) => {
+async function onCreateNode({ node, getNode, actions }) {
   const { createNodeField } = actions
   if (node.internal.type === `MarkdownRemark`) {
     const slug = createFilePath({ node, getNode, basePath: `pages` })
@@ -9,6 +10,16 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       node,
       name: `slug`,
       value: slug,
+    })
+  } else if (node.sourceInstanceName === "code" && node.extension === "js") {
+    async function loadNodeContent(fileNode) {
+      return fs.readFile(fileNode.absolutePath, `utf-8`)
+    }
+    const content = await loadNodeContent(node)
+    createNodeField({
+      node,
+      name: `content`,
+      value: content
     })
   }
 }
@@ -41,3 +52,5 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
 }
+
+exports.onCreateNode = onCreateNode
