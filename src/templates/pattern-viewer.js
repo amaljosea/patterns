@@ -31,41 +31,19 @@ export default ({ data }) => {
     </Layout>
   )
 }
+
 export const query = graphql`
-  {
-    allFile(
-      filter: { dir: { eq: "/Users/amaljose/study/gatsby-site/src/code" } }
-    ) {
-      edges {
-        node {
-          id
-          relativeDirectory
-          absolutePath
-          base
-          blocks
-          parent {
-            id
-          }
-          relativePath
-          rdev
-          publicURL
-          root
-          children {
-            id
-          }
-          dev
-          dir
-          ext
-          extension
-          mode
-          modifiedTime
-          mtime
-          name
-          fields {
-            content
-          }
+query($slug: String!) {
+  allFile(filter: {fields: {slug: {eq: $slug}}}) {
+    edges {
+      node {
+        id
+        fields {
+          content
         }
       }
     }
   }
+}
+
 `

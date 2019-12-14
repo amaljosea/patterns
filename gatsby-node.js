@@ -21,6 +21,12 @@ async function onCreateNode({ node, getNode, actions }) {
       name: `content`,
       value: content
     })
+    const slug = createFilePath({ node, getNode, basePath: `pages` })
+    createNodeField({
+      node,
+      name: `slug`,
+      value: slug,
+    })
   }
 }
 
@@ -44,6 +50,34 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: node.fields.slug,
       component: path.resolve(`./src/templates/blog-post.js`),
+      context: {
+        // Data passed to context is available
+        // in page queries as GraphQL variables.
+        slug: node.fields.slug,
+      },
+    })
+  })
+
+  const resultsCode = await graphql(`
+  {
+    allFile(filter: {sourceInstanceName: {eq: "code"}}) {
+      edges {
+        node {
+          id
+          fields {
+            content
+            slug
+          }
+        }
+      }
+    }
+  }
+  
+  `)
+  resultsCode.data.allFile.edges.forEach(({ node }) => {
+    createPage({
+      path: node.fields.slug,
+      component: path.resolve(`./src/templates/pattern-viewer.js`),
       context: {
         // Data passed to context is available
         // in page queries as GraphQL variables.
