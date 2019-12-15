@@ -25,7 +25,6 @@ const Face = () => {
       }
     }
   `)
-debugger;
 
   return <Img fluid={data.placeholderImage.childImageSharp.fluid} />
 }

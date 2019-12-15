@@ -4,7 +4,6 @@ import { graphql } from "gatsby"
 
 export default ({ data }) => {
   console.log(">>>>>>>", data)
-  debugger
   return (
     <Layout>
       <h1>Output</h1>

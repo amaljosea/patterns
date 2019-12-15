@@ -4,7 +4,6 @@ import styles from "./index.module.css"
  
 const Intro = () => {
 console.log("styles==>",styles)
-debugger;
  return (
     <div className={styles.tech}>
     <h1>Technologies</h1>
