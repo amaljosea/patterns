@@ -1,11 +1,19 @@
 import React from "react"
 import Layout from "../components/layout"
+import PatternImage from "../components/Images/PatternImage"
 import { graphql } from "gatsby"
+import styles from "./index.module.css"
 
 export default ({ data }) => {
   console.log(">>>>>>>", data)
+  const fields = data.allFile.edges[0].node.fields
   return (
     <Layout>
+      <h1>Image</h1>
+      <div className={styles.image}>
+      <PatternImage slug={fields.slug}/>
+    </div>
+  
       <h1>Output</h1>
         <iframe
           srcDoc={`
@@ -20,13 +28,13 @@ export default ({ data }) => {
             <div id="output">
             </body>
             <script> 
-            ${data.allFile.edges[0].node.fields.content}
+            ${fields.content}
             </script>
             </html>
            `}
         />
       <h1>Code</h1>
-        <pre>{data.allFile.edges[0].node.fields.content}</pre>
+        <pre>{fields.content}</pre>
     </Layout>
   )
 }
@@ -39,6 +47,7 @@ query($slug: String!) {
         id
         fields {
           content
+          slug
         }
       }
     }

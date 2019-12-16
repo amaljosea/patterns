@@ -10,7 +10,7 @@ const Sidebar = ({ className }) => (
   <StaticQuery
     query={graphql`
     {
-      allFile(filter: {sourceInstanceName: {eq: "code"}}) {
+      allFile(filter: {sourceInstanceName: {eq: "code"},extension: {eq: "js"}}) {
         edges {
           node {
             title : name
