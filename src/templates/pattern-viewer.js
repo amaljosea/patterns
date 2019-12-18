@@ -10,6 +10,7 @@ export default ({ data }) => {
   return (
     <Layout>
       <h1>Image</h1>
+      {fields.des&&<h3>{JSON.parse(fields.des).des}</h3>}
       <div className={styles.image}>
       <PatternImage slug={fields.slug}/>
     </div>
@@ -48,6 +49,7 @@ query($slug: String!) {
         fields {
           content
           slug
+          des
         }
       }
     }

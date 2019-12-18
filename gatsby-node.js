@@ -12,14 +12,44 @@ async function onCreateNode({ node, getNode, actions }) {
       value: slug,
     })
   } else if (node.sourceInstanceName === "code" && node.extension === "js") {
+
     async function loadNodeContent(fileNode) {
       return fs.readFile(fileNode.absolutePath, `utf-8`)
     }
-    const content = await loadNodeContent(node)
+
+    async function loadNodeContentDes(fileNode) {
+      return fs.readFile(
+        fileNode.absolutePath.slice(0, -2) + "json",
+        `utf-8`
+      )
+    }
+
+    let content = ""
+    try {
+      content = await loadNodeContent(node)
+    } catch (e) {
+      console.log(e)
+    }
+
+    let des = ""
+    try {
+      des = await loadNodeContentDes(node)
+    } catch (e) {
+      console.log(e)
+    }
+    console.log("Hiiii==>",des)
+
+    console.log("des==>",des)
+    
+    createNodeField({
+      node,
+      name: `des`,
+      value: des,
+    })
     createNodeField({
       node,
       name: `content`,
-      value: content
+      value: content,
     })
     const slug = createFilePath({ node, getNode, basePath: `pages` })
     createNodeField({
@@ -60,7 +90,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const resultsCode = await graphql(`
   {
-    allFile(filter: {sourceInstanceName: {eq: "code"}}) {
+    allFile(filter: {sourceInstanceName: {eq: "code"}, extension: {eq: "js"}}) {
       edges {
         node {
           id
@@ -72,7 +102,6 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   }
-  
   `)
   resultsCode.data.allFile.edges.forEach(({ node }) => {
     createPage({
