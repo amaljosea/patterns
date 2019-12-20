@@ -13,36 +13,46 @@ import Img from "gatsby-image"
  * - `useStaticQuery`: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-const PatternImage = ({slug}) => {
+const PatternImage = ({ slug }) => {
   let data = useStaticQuery(graphql`
-  {
-    images:allFile(filter: {extension: {eq: "jpg"}, sourceInstanceName:{eq:"code"}}) {
-      edges {
-        node {
-          title: name,
-          absolutePath,
-          relativePath
-          childImageSharp{
-            fluid(maxWidth: 600) {
-              ...GatsbyImageSharpFluid
+    {
+      images: allFile(
+        filter: { extension: { eq: "jpg" }, sourceInstanceName: { eq: "code" } }
+      ) {
+        edges {
+          node {
+            title: name
+            absolutePath
+            relativePath
+            childImageSharp {
+              fluid(maxWidth: 600) {
+                ...GatsbyImageSharpFluid
+              }
             }
           }
         }
       }
     }
-  }
-  
   `)
-  console.log("childImageSharp===>",data)
+  console.log("childImageSharp===>", data)
 
   const fluid = data.images.edges.find(n => {
-    console.log(n.node.relativePath.slice(0, -4),"-",slug.slice(0, -1).slice( 1 ))
-    return n.node.relativePath.slice(0, -4)===slug.slice(0, -1).slice( 1 )
-  });
-  console.log("fluid===>",fluid)
+    console.log(
+      n.node.relativePath.slice(0, -4),
+      "-",
+      slug.slice(0, -1).slice(1)
+    )
+    return n.node.relativePath.slice(0, -4) === slug.slice(0, -1).slice(1)
+  })
+  console.log("fluid===>", fluid)
 
-  if(!fluid) return null
-  return <Img fluid={fluid.node.childImageSharp.fluid} width={100}/>
+  if (!fluid) return null
+  return (
+    <>
+      <h1>Image</h1>
+      <Img fluid={fluid.node.childImageSharp.fluid} width={100} />
+    </>
+  )
 }
 
-export default PatternImage;
+export default PatternImage

@@ -9,15 +9,14 @@ export default ({ data }) => {
   const fields = data.allFile.edges[0].node.fields
   return (
     <Layout>
-      <h1>Image</h1>
-      {fields.des&&<h3>{JSON.parse(fields.des).des}</h3>}
       <div className={styles.image}>
-      <PatternImage slug={fields.slug}/>
-    </div>
-  
+        <PatternImage slug={fields.slug} />
+        {fields.des && <h3>{JSON.parse(fields.des).des}</h3>}
+      </div>
+
       <h1>Output</h1>
-        <iframe
-          srcDoc={`
+      <iframe
+        srcDoc={`
           <html>
            <script> 
            console.log = item => {
@@ -33,27 +32,26 @@ export default ({ data }) => {
             </script>
             </html>
            `}
-        />
+      />
       <h1>Code</h1>
-        <pre>{fields.content}</pre>
+      <pre>{fields.content}</pre>
     </Layout>
   )
 }
 
 export const query = graphql`
-query($slug: String!) {
-  allFile(filter: {fields: {slug: {eq: $slug}}}) {
-    edges {
-      node {
-        id
-        fields {
-          content
-          slug
-          des
+  query($slug: String!) {
+    allFile(filter: { fields: { slug: { eq: $slug } } }) {
+      edges {
+        node {
+          id
+          fields {
+            content
+            slug
+            des
+          }
         }
       }
     }
   }
-}
-
 `
