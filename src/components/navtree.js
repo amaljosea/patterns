@@ -254,7 +254,7 @@ class NavTree extends Component {
             marginLeft: '1.45rem',
           }}
         >
-          Articles
+          Files
         </h4>
         <TreeView
           data={tree}

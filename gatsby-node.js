@@ -4,24 +4,13 @@ const fs = require(`fs-extra`)
 
 async function onCreateNode({ node, getNode, actions }) {
   const { createNodeField } = actions
-  if (node.internal.type === `MarkdownRemark`) {
-    const slug = createFilePath({ node, getNode, basePath: `pages` })
-    createNodeField({
-      node,
-      name: `slug`,
-      value: slug,
-    })
-  } else if (node.sourceInstanceName === "code" && node.extension === "js") {
-
+  if (node.sourceInstanceName === "code" && node.extension === "js") {
     async function loadNodeContent(fileNode) {
       return fs.readFile(fileNode.absolutePath, `utf-8`)
     }
 
     async function loadNodeContentDes(fileNode) {
-      return fs.readFile(
-        fileNode.absolutePath.slice(0, -2) + "json",
-        `utf-8`
-      )
+      return fs.readFile(fileNode.absolutePath.slice(0, -2) + "json", `utf-8`)
     }
 
     let content = ""
@@ -37,10 +26,7 @@ async function onCreateNode({ node, getNode, actions }) {
     } catch (e) {
       console.log(e)
     }
-    console.log("Hiiii==>",des)
 
-    console.log("des==>",des)
-    
     createNodeField({
       node,
       name: `des`,
@@ -62,46 +48,23 @@ async function onCreateNode({ node, getNode, actions }) {
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
-  const result = await graphql(`
-    query {
-      allMarkdownRemark {
+
+  const resultsCode = await graphql(`
+    {
+      allFile(
+        filter: { sourceInstanceName: { eq: "code" }, extension: { eq: "js" } }
+      ) {
         edges {
           node {
+            id
             fields {
+              content
               slug
             }
           }
         }
       }
     }
-  `)
-
-  result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-    createPage({
-      path: node.fields.slug,
-      component: path.resolve(`./src/templates/blog-post.js`),
-      context: {
-        // Data passed to context is available
-        // in page queries as GraphQL variables.
-        slug: node.fields.slug,
-      },
-    })
-  })
-
-  const resultsCode = await graphql(`
-  {
-    allFile(filter: {sourceInstanceName: {eq: "code"}, extension: {eq: "js"}}) {
-      edges {
-        node {
-          id
-          fields {
-            content
-            slug
-          }
-        }
-      }
-    }
-  }
   `)
   resultsCode.data.allFile.edges.forEach(({ node }) => {
     createPage({
