@@ -16,6 +16,10 @@ export default ({ data }) => {
 
       <h1>Output</h1>
       <iframe
+        style={{
+          width: "100%",
+          height: "50%",
+        }}
         srcDoc={`
           <html>
            <script> 

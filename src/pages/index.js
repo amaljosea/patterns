@@ -8,10 +8,12 @@ const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
     <div>
-    <h1>Hi! I'm building a fake Gatsby site as part of a tutorial!</h1>
+    <h2>Pattern programming questions.</h2>
     <p>
-      What do I like to do? Lots of course but definitely enjoy building
-      websites.
+      It is fun to learn programming by printing patterns. This project contains collection of different patterns and some solutions for printing them using javascript.
+    </p>
+    <p>
+      For contributing, clone the repo at: <a href="https://github.com/howareyouami/patterns">github</a>
     </p>
   </div>
   </Layout>
