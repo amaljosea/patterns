@@ -23,9 +23,11 @@ export default ({ data }) => {
         srcDoc={`
           <html>
            <script> 
-           console.log = item => {
-            document.getElementById("output").innerHTML +=
-              item.replace(/ /g, "&nbsp&nbsp") + "<br>";
+           console.log = (...arguments) => {
+            arguments.forEach((item)=>{
+              document.getElementById("output").innerHTML +=
+              item.toString().replace(/ /g, "&nbsp&nbsp") + "<br>";
+            })
           };
            </script>
             <body>
