@@ -41,6 +41,10 @@ export default ({ data }) => {
       />
       <h1>Code</h1>
       <pre>{fields.content}</pre>
+      <p>
+      For contributing, clone the repo at: <a href="https://github.com/howareyouami/patterns">github</a>
+    </p>
+
     </Layout>
   )
 }
