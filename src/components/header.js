@@ -5,7 +5,7 @@ import React from "react"
 const Header = ({ siteTitle }) => (
   <header
     style={{
-      background: `grey`,
+      background: `#9c2515`,
       marginBottom: `1.45rem`,
     }}
   >
@@ -14,6 +14,10 @@ const Header = ({ siteTitle }) => (
         margin: `0 auto`,
         maxWidth: 960,
         padding: `1.45rem 1.0875rem`,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column'
       }}
     >
       <h1 style={{ margin: 0 }}>
@@ -24,9 +28,10 @@ const Header = ({ siteTitle }) => (
             textDecoration: `none`,
           }}
         >
-          {siteTitle}
+          {siteTitle.toUpperCase()}
         </Link>
       </h1>
+      <p className="header__paragraph" style={{color:"white", marginBottom:0}}>Learn programming by printing patterns</p>
     </div>
   </header>
 )
