@@ -16,3 +16,12 @@
 .nav {
   padding: 6px 2px;
 }
+
+@media only screen and (max-width: 760px) {
+  .sidebar-flex {
+    position: absolute;
+    background-color: white;
+    z-index: 1;
+    height: 100vh;
+  }
+}

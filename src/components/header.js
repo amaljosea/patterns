@@ -3,13 +3,15 @@ import PropTypes from "prop-types"
 import React from "react"
 import './header.css'
 
-const Header = ({ siteTitle }) => (
+const Header = ({ siteTitle, onBurgerClick }) => (
   <header
+    className="header"
     style={{
       background: `#9c2515`,
       marginBottom: `1.45rem`,
     }}
   >
+    {window.outerWidth<=760&&<button onClick={onBurgerClick}>burger</button>}
     <div
       style={{
         margin: `0 auto`,

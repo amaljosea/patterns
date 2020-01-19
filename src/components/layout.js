@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
 
@@ -9,9 +9,15 @@ import '@progress/kendo-theme-default/dist/all.css';
 import './layout.css';
 import './layout-custom.css';
 
-const Layout = ({ children }) => (
-  <StaticQuery
-    query={graphql`
+const Layout = ({ children }) => {
+  const [sideBarVisible, setSideBarVisible] = useState(true)
+  const onBurgerClick = () => {
+    console.log("burger is clicked")
+    setSideBarVisible(!sideBarVisible)
+  }
+  return (
+    <StaticQuery
+      query={graphql`
       query SiteTitleQuery {
         site {
           siteMetadata {
@@ -20,25 +26,26 @@ const Layout = ({ children }) => (
         }
       }
     `}
-    render={data => (
-      <>
-        <Header siteTitle={data.site.siteMetadata.title} />
-        <div className="container-flex">
-          <Sidebar className="sidebar-flex" />
-          <div className="content-flex">
-            {children}
-            <hr />
-            <footer>
-              © {new Date().getFullYear()}, Built with
+      render={data => (
+        <>
+          <Header siteTitle={data.site.siteMetadata.title} onBurgerClick={onBurgerClick} />
+          <div className="container-flex">
+            {(sideBarVisible||window.outerWidth>=760) && <Sidebar className="sidebar-flex" />}
+            <div className="content-flex">
+              {children}
+              <hr />
+              <footer>
+                © {new Date().getFullYear()}, Built with
               {` `}
-              <a href="https://www.gatsbyjs.org">Gatsby</a>
-            </footer>
+                <a href="https://www.gatsbyjs.org">Gatsby</a>
+              </footer>
+            </div>
           </div>
-        </div>
-      </>
-    )}
-  />
-);
+        </>
+      )}
+    />
+  )
+};
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
