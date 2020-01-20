@@ -618,3 +618,18 @@ pre tt:after {
     font-size: 100%;
   }
 }
+
+@media only screen and (max-width: 760px) {
+  .sidebar-flex {
+    position: absolute;
+    background-color: white;
+    z-index: 1;
+    height: 100vh;
+    transition: opacity .2s, visibility .2s, margin-top 0s .2s;
+    visibility: visible;
+  }
+  .sidebar-flex.hide {
+    visibility: hidden;
+    transition: opacity .2s, visibility .2s, margin-top 0s .2s;
+  }
+}

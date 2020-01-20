@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
-
 import Sidebar from './sidebar';
 import Header from './header';
 
@@ -11,7 +10,7 @@ import './layout-custom.css';
 
 const Layout = ({ children }) => {
   const [sideBarVisible, setSideBarVisible] = useState(true)
-  const onBurgerClick = () => {
+  const onToggle = () => {
     console.log("burger is clicked")
     setSideBarVisible(!sideBarVisible)
   }
@@ -28,9 +27,9 @@ const Layout = ({ children }) => {
     `}
       render={data => (
         <>
-          <Header siteTitle={data.site.siteMetadata.title} onBurgerClick={onBurgerClick} />
+          <Header siteTitle={data.site.siteMetadata.title} onToggle={onToggle} />
           <div className="container-flex">
-            {(sideBarVisible||window.outerWidth>=760) && <Sidebar className="sidebar-flex" />}
+            {<Sidebar className={!sideBarVisible ? "sidebar-flex hide" : "sidebar-flex"} />}
             <div className="content-flex">
               {children}
               <hr />

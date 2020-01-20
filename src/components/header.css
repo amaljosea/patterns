@@ -3,3 +3,11 @@
     font-family: 'Uni Sans';
 }
 
+.toggle-button {
+    display: none;
+}
+@media only screen and (max-width: 760px) {
+    .toggle-button {
+        display: block;
+    }
+}

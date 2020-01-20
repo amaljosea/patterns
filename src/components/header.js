@@ -2,8 +2,9 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
 import './header.css'
+import Image from '../icons/menu.svg'
 
-const Header = ({ siteTitle, onBurgerClick }) => (
+const Header = ({ siteTitle, onToggle }) => (
   <header
     className="header"
     style={{
@@ -11,7 +12,7 @@ const Header = ({ siteTitle, onBurgerClick }) => (
       marginBottom: `1.45rem`,
     }}
   >
-    {window.outerWidth<=760&&<button onClick={onBurgerClick}>burger</button>}
+    {<button className="toggle-button" onClick={onToggle}>Toggle</button>}
     <div
       style={{
         margin: `0 auto`,
@@ -33,6 +34,7 @@ const Header = ({ siteTitle, onBurgerClick }) => (
         >
           {siteTitle.toUpperCase()}
         </Link>
+        <Image/>
       </h1>
       <p className="header__paragraph" style={{color:"white", marginBottom:0}}>Learn programming by printing patterns</p>
     </div>
