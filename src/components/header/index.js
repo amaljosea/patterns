@@ -2,7 +2,7 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
 import './header.css'
-import toggleIcon from '../icons/menu.svg'
+import toggleIcon from '../../icons/menu.svg'
 
 const Header = ({ siteTitle, onToggle }) => (
   <header
@@ -13,7 +13,7 @@ const Header = ({ siteTitle, onToggle }) => (
     }}
   >
     <div style={{ display: "flex" }}>
-      <button onClick={onToggle} aria-label="open side bar" className="header__menu-icon">
+      <button onClick={onToggle} aria-label="open side bar" className="header__toggle-button">
         <svg  style={{ margin: "10px", width: "60px" }}>
         <use xlinkHref={`#${toggleIcon.id}`} />
       </svg>

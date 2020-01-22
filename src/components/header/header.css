@@ -3,13 +3,17 @@
     font-family: 'Uni Sans';
 }
 
-.header__menu-icon {
+.header__toggle-button {
     display: none;
+    cursor: pointer;
+    padding: 0;
+    border: none;
+    background: none;
 }
 
 
 @media only screen and (max-width: 760px) {
-    .header__menu-icon {
+    .header__toggle-button {
         display: block;
     }
 }
