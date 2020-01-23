@@ -4,3 +4,11 @@
 .image {
     max-width: 300px;
 }
+
+.pattern-viewer h3 {
+    margin-top: 40px;
+}
+.pattern-viewer__conributing {
+    display: flex;
+    align-items: center;
+}

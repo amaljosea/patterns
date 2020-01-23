@@ -49,7 +49,6 @@ const PatternImage = ({ slug }) => {
   if (!fluid) return null
   return (
     <>
-      <h1>Image</h1>
       <Img fluid={fluid.node.childImageSharp.fluid} width={100} />
     </>
   )
