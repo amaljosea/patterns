@@ -18,7 +18,8 @@ export default ({ data }) => {
       <iframe
         style={{
           width: "100%",
-          height: "50%",
+          height: "40vh",
+          overflow: "scroll"
         }}
         srcDoc={`
           <html>
@@ -40,10 +41,14 @@ export default ({ data }) => {
            `}
       />
       <h1>Code</h1>
-      <pre>{fields.content}</pre>
+      <pre style={{
+        width: "100%",
+        overflow: "scroll",
+        height: "40vh"
+      }}>{fields.content}</pre>
       <p>
-      For contributing, clone the repo at: <a href="https://github.com/howareyouami/patterns">github</a>
-    </p>
+        For contributing, clone the repo at: <a href="https://github.com/howareyouami/patterns">github</a>
+      </p>
 
     </Layout>
   )
