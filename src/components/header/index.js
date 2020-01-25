@@ -9,7 +9,6 @@ const Header = ({ siteTitle, onToggle }) => (
     className="header"
     style={{
       background: `#9c2515`,
-      marginBottom: `1.45rem`,
     }}
   >
     <div style={{ display: "flex" }}>

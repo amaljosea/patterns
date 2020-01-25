@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'gatsby';
 import { TreeView } from '@progress/kendo-react-treeview';
+import './index.css';
 
 import {
   persistToLocalStorage,
   restoreFromLocalStorage,
-} from '../utils/local-storage-helper';
+} from '../../utils/local-storage-helper';
 
 const ITEMS_IN_STORAGE = ['expandedItems'];
 
