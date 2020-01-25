@@ -30,7 +30,7 @@ const Layout = ({ children }) => {
           <Header siteTitle={data.site.siteMetadata.title} onToggle={onToggle} />
           <div className="container-flex">
             {<Sidebar className={!sideBarVisible ? "sidebar-flex hide" : "sidebar-flex"} />}
-            <div className="content-flex">
+            <div className={sideBarVisible ? "content-flex hide" : "content-flex"}  >
               {children}
               <hr />
               <footer>

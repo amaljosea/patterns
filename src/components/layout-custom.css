@@ -38,4 +38,7 @@
     width: 0px;
     opacity: 0;
   }
+  .content-flex.hide{
+    display: none;
+  }
 }
