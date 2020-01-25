@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @font-face {
   font-family: "Uni Sans";
-  src: url("../../static/fonts/uni-sans/UniSansHeavyCAPS.woff")   format("woff");
+  src: url("../../../static/fonts/uni-sans/UniSansHeavyCAPS.woff")   format("woff");
 } 
 html {
   font-family: 'Roboto', sans-serif;

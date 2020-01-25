@@ -1,9 +1,9 @@
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 
-import { parseLinksToTree, formatForWiki } from '../utils/parse-links-to-tree';
+import { parseLinksToTree, formatForWiki } from '../../utils/parse-links-to-tree';
 
-import { NavTree } from './navtree/index';
+import { NavTree } from '../navtree/index';
 import './sidebar.css';
 
 const Sidebar = ({ className }) => (

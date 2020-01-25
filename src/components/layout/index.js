@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
-import Sidebar from './sidebar';
-import Header from './header/index';
+import Sidebar from '../sidebar';
+import Header from '../header/index';
 
 import '@progress/kendo-theme-default/dist/all.css';
 import './layout.css';
