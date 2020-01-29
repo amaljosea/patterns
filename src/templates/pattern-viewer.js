@@ -9,9 +9,11 @@ import Contributing from "../components/Contributing"
 export default ({ data }) => {
   console.log(">>>>>>>", data)
   const fields = data.allFile.edges[0].node.fields
+  const breadCrumb = fields.slug.split('/').filter((i) => i).join(" > ")
   return (
     <Layout>
       <div className="pattern-viewer">
+        <p style={{ color: "#9c2515" }}>{breadCrumb}</p>
         <h3>Print a pattern with the following output</h3>
         <div className={styles.image}>
           <PatternImage slug={fields.slug} />
