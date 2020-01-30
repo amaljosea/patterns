@@ -25,7 +25,9 @@ export default ({ data }) => {
           style={{
             width: "100%",
             height: "40vh",
-            overflow: "scroll"
+            overflow: "scroll",
+            border:0,
+            backgroundColor:"whitesmoke"
           }}
           srcDoc={`
           <html>
@@ -43,6 +45,11 @@ export default ({ data }) => {
             <script> 
             ${fields.content}
             </script>
+            <style>
+            #output{
+              margin: 60px;
+            }
+            </style>
             </html>
            `}
         />
