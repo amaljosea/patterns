@@ -1,15 +1,24 @@
 import React from "react"
-import styles from "./index.module.css"
 import githubIcon from '../../icons/github.svg'
+import styled from "styled-components"
+
+const ContributingWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`
+const Svg = styled.svg`
+  margin:10px;
+  width:40px;
+`
 
 const Contributing = () => (
-  <div className={styles.conributing_container}>
+  <ContributingWrapper>
     For contributing, clone the repo at: <a href="https://github.com/howareyouami/patterns">
-      <svg style={{ margin: "10px", width: "40px" }}>
+      <Svg>
         <use xlinkHref={`#${githubIcon.id}`} />
-      </svg>
+      </Svg>
     </a>
-  </div>
+  </ContributingWrapper>
 )
 
 
