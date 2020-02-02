@@ -3,8 +3,12 @@ import Layout from "../components/layout"
 import PatternImage from "../components/Images/PatternImage"
 import { graphql } from "gatsby"
 import styles from "./index.module.css"
-import toggleIcon from '../icons/github.svg'
 import Contributing from "../components/Contributing"
+import styled from "styled-components"
+
+const BreadCrumb = styled.p`
+  color:${(props) => props.theme.primaryColor};
+`
 
 export default ({ data }) => {
   console.log(">>>>>>>", data)
@@ -13,7 +17,7 @@ export default ({ data }) => {
   return (
     <Layout>
       <div className="pattern-viewer">
-        <p style={{ color: "#9c2515" }}>{breadCrumb}</p>
+        <BreadCrumb>{breadCrumb}</BreadCrumb>
         <h3>Print a pattern with the following output</h3>
         <div className={styles.image}>
           <PatternImage slug={fields.slug} />

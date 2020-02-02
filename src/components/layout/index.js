@@ -3,10 +3,15 @@ import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
 import Sidebar from '../sidebar';
 import Header from '../header/index';
+import { ThemeProvider } from 'styled-components';
 
 import '@progress/kendo-theme-default/dist/all.css';
 import './layout.css';
 import './layout-custom.css';
+
+const theme = {
+  primaryColor: '#9c2515',
+};
 
 const Layout = ({ children }) => {
   const [sideBarVisible, setSideBarVisible] = useState(false)
@@ -26,7 +31,7 @@ const Layout = ({ children }) => {
       }
     `}
       render={data => (
-        <>
+        <ThemeProvider theme={theme}>
           <Header siteTitle={data.site.siteMetadata.title} onToggle={onToggle} />
           <div className="container-flex">
             {<Sidebar className={!sideBarVisible ? "sidebar-flex hide" : "sidebar-flex"} />}
@@ -40,7 +45,7 @@ const Layout = ({ children }) => {
               </footer>
             </div>
           </div>
-        </>
+        </ThemeProvider>
       )}
     />
   )

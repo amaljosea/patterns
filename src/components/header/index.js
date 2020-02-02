@@ -3,13 +3,13 @@ import PropTypes from "prop-types"
 import React from "react"
 import './header.css'
 import toggleIcon from '../../icons/menu.svg'
+import styled from "styled-components"
 
+const HtmlHeader = styled.header`
+  background:${(props) => props.theme.primaryColor}
+`
 const Header = ({ siteTitle, onToggle }) => (
-  <header
-    className="header"
-    style={{
-      background: `#9c2515`,
-    }}
+  <HtmlHeader
   >
     <div style={{ display: "flex" }}>
       <button onClick={onToggle} aria-label="open side bar" className="header__toggle-button">
@@ -44,7 +44,7 @@ const Header = ({ siteTitle, onToggle }) => (
         <p className="header__paragraph" style={{ color: "white", marginBottom: 0 }}>Learn programming by printing patterns</p>
       </div>
     </div>
-  </header>
+  </HtmlHeader>
 )
 
 Header.propTypes = {
