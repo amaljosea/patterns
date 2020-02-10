@@ -1,5 +1,7 @@
 import React from "react"
-import Layout from "../components/layout"
+import Layout from "../components/Layout"
+import Editor from "../components/Editor"
+
 import PatternImage from "../components/Images/PatternImage"
 import { graphql } from "gatsby"
 import styles from "./index.module.css"
@@ -23,7 +25,7 @@ export default ({ data }) => {
           <PatternImage slug={fields.slug} />
           {fields.des && <h3>{JSON.parse(fields.des).des}</h3>}
         </div>
-
+        <Editor/>
         <h3>Output</h3>
         <iframe
           style={{
