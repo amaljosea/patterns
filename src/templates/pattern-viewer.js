@@ -25,40 +25,7 @@ export default ({ data }) => {
           <PatternImage slug={fields.slug} />
           {fields.des && <h3>{JSON.parse(fields.des).des}</h3>}
         </div>
-        <Editor/>
-        <h3>Output</h3>
-        <iframe
-          style={{
-            width: "100%",
-            height: "40vh",
-            overflow: "scroll",
-            border:0,
-            backgroundColor:"whitesmoke"
-          }}
-          srcDoc={`
-          <html>
-           <script> 
-           console.log = (...arguments) => {
-            arguments.forEach((item)=>{
-              document.getElementById("output").innerHTML +=
-              item.toString().replace(/ /g, "&nbsp&nbsp") + "<br>";
-            })
-          };
-           </script>
-            <body>
-            <div id="output">
-            </body>
-            <script> 
-            ${fields.content}
-            </script>
-            <style>
-            #output{
-              margin: 60px;
-            }
-            </style>
-            </html>
-           `}
-        />
+        <Editor solution={fields.content}/>
         <h3>Code</h3>
         <pre style={{
           width: "100%",

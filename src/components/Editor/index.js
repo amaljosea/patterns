@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import Console from '../Console'
 
 const EditorWrapper = styled.div`
 `
@@ -20,7 +21,7 @@ const ButtonWrapper = styled.div`
   justify-content: flex-end;
 `
 
-const Editor = () => (
+const Editor = ({solution}) => (
     <EditorWrapper>
         <TextArea/>
         <ArgumentInput placeholder="Argument goes here..."/>
@@ -29,6 +30,7 @@ const Editor = () => (
             <button>Test</button>
             <button>View solution</button>
         </ButtonWrapper>
+        <Console solution={solution}/>
     </EditorWrapper>
 )
 
