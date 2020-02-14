@@ -1,4 +1,6 @@
-export const testFunction = ()=> {
-   console.log("* * *") 
+const print = (n)=> {
+   while(n){
+      console.log("*") 
+      --n
+   }
 }
-testFunction()
