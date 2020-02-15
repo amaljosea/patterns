@@ -38,7 +38,7 @@ const Console = ({ solution }) => (
     <script> 
     try{
       ${solution}
-      if(print) print(10)
+      // if(print) print(10)
     } 
     catch(e){
       document.showError(e)
