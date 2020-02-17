@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import Console from '../Console'
+import Console from '../Console/index2'
 
 const EditorWrapper = styled.div`
 `
@@ -21,32 +21,60 @@ const ButtonWrapper = styled.div`
   justify-content: flex-end;
 `
 
-const Editor = ({solution}) => {
-  const [argument,setArugment]=useState('')
-  const [userCode,setUserCode]=useState('')
+const Editor = ({ solution }) => {
+  const [argument, setArugment] = useState('')
+  const [userCode, setUserCode] = useState('')
+  const [consoleOutput, setConsoleOutput] = useState('')
+  const [isError, setIsError] = useState(false)
 
-  const onArgumentChange=(e)=>{
+  console.log("usercode==>", userCode)
+
+  const handleRunClick = () => {
+    setConsoleOutput("");
+    let tempConsoleOut = ''
+    let tempConsole = console.log
+    console.log = function func1(...args) {
+      args && args.length && args.forEach((item) => {
+        tempConsoleOut += item.toString() + "\n"
+      })
+    }
+    try {
+      eval(userCode)
+      setIsError(false)
+      setConsoleOutput(tempConsoleOut)
+    }
+    catch (err) {
+      debugger;
+      setIsError(true)
+      setConsoleOutput(JSON.stringify(err.message))
+    }
+    console.log = tempConsole
+  }
+
+  const onArgumentChange = (e) => {
     setArugment(e.target.value)
   }
 
-  const onUserCodeChange=(e)=>{
+  const onUserCodeChange = (e) => {
     setUserCode(e.target.value)
   }
 
   return (
     <EditorWrapper>
-        <UserCodeArea value={userCode} onChange={onUserCodeChange}/>
-        <ArgumentInput placeholder="Argument goes here..." onChange={onArgumentChange} value={argument}/>
-        <ButtonWrapper>
-            <button>Run</button>
-            <button>Test</button>
-            <button>View solution</button>
-        </ButtonWrapper>
-        <Console
-        //  solution={solution} 
-         solution={userCode}/>
+      <UserCodeArea value={userCode} onChange={onUserCodeChange} />
+      <ArgumentInput placeholder="Argument goes here..." onChange={onArgumentChange} value={argument} />
+      <ButtonWrapper>
+        <button onClick={handleRunClick}>Run</button>
+        <button>Test</button>
+        <button>View solution</button>
+      </ButtonWrapper>
+      <Console
+        output={consoleOutput}
+        isError={isError} 
+        />
     </EditorWrapper>
-)}
+  )
+}
 
 
-export default Editor
+export default Editor;

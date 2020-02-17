@@ -1,6 +1,6 @@
 
 const printPattern=(rowCount)=>{
-    let rowOutput
+    let rowOutput,i,k
     for(i=0;i<rowCount;i++) {
         rowOutput=""  
             for(k=0;k<rowCount+i;k++) {
