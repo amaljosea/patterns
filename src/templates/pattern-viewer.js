@@ -26,12 +26,6 @@ export default ({ data }) => {
           {fields.des && <h3>{JSON.parse(fields.des).des}</h3>}
         </div>
         <Editor solution={fields.content}/>
-        <h3>Code</h3>
-        <pre style={{
-          width: "100%",
-          overflow: "scroll",
-          height: "40vh"
-        }}>{fields.content}</pre>
         <Contributing />
       </div>
     </Layout>

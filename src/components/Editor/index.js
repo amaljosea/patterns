@@ -27,8 +27,6 @@ const Editor = ({ solution }) => {
   const [consoleOutput, setConsoleOutput] = useState('')
   const [isError, setIsError] = useState(false)
 
-  console.log("usercode==>", userCode)
-
   const handleRunClick = () => {
     setConsoleOutput("");
     let tempConsoleOut = ''
@@ -59,6 +57,10 @@ const Editor = ({ solution }) => {
     setUserCode(e.target.value)
   }
 
+  const handleViewSolutionClick = () => {
+    setUserCode(solution)
+  }
+  
   return (
     <EditorWrapper>
       <UserCodeArea value={userCode} onChange={onUserCodeChange} />
@@ -66,7 +68,7 @@ const Editor = ({ solution }) => {
       <ButtonWrapper>
         <button onClick={handleRunClick}>Run</button>
         <button>Test</button>
-        <button>View solution</button>
+        <button onClick={handleViewSolutionClick}>View solution</button>
       </ButtonWrapper>
       <Console
         output={consoleOutput}
