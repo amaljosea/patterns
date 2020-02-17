@@ -39,7 +39,7 @@ const Editor = ({ solution }) => {
       })
     }
     try {
-      eval(userCode)
+      Function(userCode)()
       setIsError(false)
       setConsoleOutput(tempConsoleOut)
     }
