@@ -16,6 +16,7 @@
   max-width: 960;
   padding: 2rem 5vw 1.45rem;
   flex-grow: 1;
+  overflow: hidden;
 }
 
 .sidebar-flex {
