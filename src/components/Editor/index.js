@@ -1,6 +1,7 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import Console from '../Console/index2'
+import * as monaco from 'monaco-editor';
 
 const EditorWrapper = styled.div`
 `
@@ -60,10 +61,21 @@ const Editor = ({ solution }) => {
   const handleViewSolutionClick = () => {
     setUserCode(solution)
   }
+
+  useEffect(()=>{
+    if(document.getElementById("container")){
+      monaco.editor.create(document.getElementById("container"), {
+        value: solution,
+        language: "javascript",
+        fontSize: 20
+      });
+    }
+  },[])
   
   return (
     <EditorWrapper>
-      <UserCodeArea value={userCode} onChange={onUserCodeChange} />
+      <div id="container" style={{height:"40vh", width:"100%", margin:"50px 0px 50px 0px", border: "2px solid" }}></div>
+      {/* <UserCodeArea value={userCode} onChange={onUserCodeChange} /> */}
       <ArgumentInput placeholder="Argument goes here..." onChange={onArgumentChange} value={argument} />
       <ButtonWrapper>
         <button onClick={handleRunClick}>Run</button>

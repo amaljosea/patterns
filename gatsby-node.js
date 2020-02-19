@@ -1,6 +1,15 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 const fs = require(`fs-extra`)
+const MonacoWebpackPlugin = require(`monaco-editor-webpack-plugin`);
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    plugins: [
+      new MonacoWebpackPlugin()
+    ]
+  });
+};
 
 async function onCreateNode({ node, getNode, actions }) {
   const { createNodeField } = actions
