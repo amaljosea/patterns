@@ -10,6 +10,14 @@ const ArgumentInput = styled.input`
   width: 100%;
 `
 
+const EditorButton = styled.button`
+    background-color: ${props => props.primary ? '#9c251e' : 'white'};
+    color: ${props => props.primary ? 'white' : '#9c251e'};
+    padding: 10px;
+    margin-left: 10px;
+    width: 150px;
+`
+
 
 const ButtonWrapper = styled.div`
   margin: 10px;
@@ -72,9 +80,9 @@ const Editor = ({ solution }) => {
       <div id="container" style={{ height: "40vh", width: "100%", margin: "50px 0px 50px 0px", border: "2px solid" }}></div>
       {/* <ArgumentInput placeholder="Argument goes here..." onChange={onArgumentChange} value={argument} /> */}
       <ButtonWrapper>
-        <button onClick={handleRunClick}>Run</button>
         {/* <button>Test</button> */}
-        <button onClick={handleViewSolutionClick}>View solution</button>
+        <EditorButton onClick={handleViewSolutionClick}>View solution</EditorButton>
+        <EditorButton primary onClick={handleRunClick}>Run</EditorButton>
       </ButtonWrapper>
       <Console
         output={consoleOutput}
