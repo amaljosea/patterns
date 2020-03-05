@@ -6,11 +6,6 @@ import * as monaco from 'monaco-editor';
 const EditorWrapper = styled.div`
 `
 
-const UserCodeArea = styled.textarea`
-  width: 100%;
-  height: 40vh;
-`
-
 const ArgumentInput = styled.input`
   width: 100%;
 `
@@ -21,14 +16,16 @@ const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
 `
+let monacoEditor, model
+
 
 const Editor = ({ solution }) => {
   const [argument, setArugment] = useState('')
-  const [userCode, setUserCode] = useState('')
   const [consoleOutput, setConsoleOutput] = useState('')
   const [isError, setIsError] = useState(false)
 
   const handleRunClick = () => {
+    const userCode = model.getValue()
     setConsoleOutput("");
     let tempConsoleOut = ''
     let tempConsole = console.log
@@ -54,28 +51,25 @@ const Editor = ({ solution }) => {
     setArugment(e.target.value)
   }
 
-  const onUserCodeChange = (e) => {
-    setUserCode(e.target.value)
-  }
-
   const handleViewSolutionClick = () => {
-    setUserCode(solution)
+    monacoEditor.setValue(solution)
   }
 
-  useEffect(()=>{
-    if(document.getElementById("container")){
-      monaco.editor.create(document.getElementById("container"), {
-        value: solution,
+  useEffect(() => {
+    if (document.getElementById("container")) {
+      model = monaco.editor.createModel("");
+      monacoEditor = monaco.editor.create(document.getElementById("container"), {
+        value: "",
         language: "javascript",
         fontSize: 20
       });
+      monacoEditor.setModel(model);
     }
-  },[])
-  
+  }, [])
+
   return (
     <EditorWrapper>
-      <div id="container" style={{height:"40vh", width:"100%", margin:"50px 0px 50px 0px", border: "2px solid" }}></div>
-      {/* <UserCodeArea value={userCode} onChange={onUserCodeChange} /> */}
+      <div id="container" style={{ height: "40vh", width: "100%", margin: "50px 0px 50px 0px", border: "2px solid" }}></div>
       <ArgumentInput placeholder="Argument goes here..." onChange={onArgumentChange} value={argument} />
       <ButtonWrapper>
         <button onClick={handleRunClick}>Run</button>
@@ -84,8 +78,8 @@ const Editor = ({ solution }) => {
       </ButtonWrapper>
       <Console
         output={consoleOutput}
-        isError={isError} 
-        />
+        isError={isError}
+      />
     </EditorWrapper>
   )
 }
