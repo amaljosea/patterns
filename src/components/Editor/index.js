@@ -70,10 +70,10 @@ const Editor = ({ solution }) => {
   return (
     <EditorWrapper>
       <div id="container" style={{ height: "40vh", width: "100%", margin: "50px 0px 50px 0px", border: "2px solid" }}></div>
-      <ArgumentInput placeholder="Argument goes here..." onChange={onArgumentChange} value={argument} />
+      {/* <ArgumentInput placeholder="Argument goes here..." onChange={onArgumentChange} value={argument} /> */}
       <ButtonWrapper>
         <button onClick={handleRunClick}>Run</button>
-        <button>Test</button>
+        {/* <button>Test</button> */}
         <button onClick={handleViewSolutionClick}>View solution</button>
       </ButtonWrapper>
       <Console
