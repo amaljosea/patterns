@@ -2,6 +2,7 @@
 .container-flex {
   display: flex;
   flex-direction: row;
+  min-height: calc(100vh - 121px);
 }
 
 /* .sidebar-flex {
