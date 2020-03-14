@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import styled from "styled-components"
 import Console from '../Console/index2'
 import * as monaco from 'monaco-editor';
@@ -6,9 +6,9 @@ import * as monaco from 'monaco-editor';
 const EditorWrapper = styled.div`
 `
 
-const ArgumentInput = styled.input`
-  width: 100%;
-`
+// const ArgumentInput = styled.input`
+//   width: 100%;
+// `
 
 const EditorButton = styled.button`
     background-color: ${props => props.primary ? '#9c251e' : 'white'};
@@ -24,13 +24,23 @@ const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
 `
+
+const MonacoEditor = styled.div`
+  height: 40vh;
+  width: 100%;
+  justify-content: flex-end;
+  margin: 50px 0px 50px 0px;
+  border: 2px solid;
+`
+
 let monacoEditor, model
 
 
 const Editor = ({ solution }) => {
-  const [argument, setArugment] = useState('')
+  // const [argument, setArugment] = useState('')
   const [consoleOutput, setConsoleOutput] = useState('')
   const [isError, setIsError] = useState(false)
+  const monacoEditorRef = useRef();
 
   const handleRunClick = () => {
     const userCode = model.getValue()
@@ -55,18 +65,18 @@ const Editor = ({ solution }) => {
     console.log = tempConsole
   }
 
-  const onArgumentChange = (e) => {
-    setArugment(e.target.value)
-  }
+  // const onArgumentChange = (e) => {
+  //   setArugment(e.target.value)
+  // }
 
   const handleViewSolutionClick = () => {
     monacoEditor.setValue(solution)
   }
 
   useEffect(() => {
-    if (document.getElementById("container")) {
+    if (monacoEditorRef.current) {
       model = monaco.editor.createModel("");
-      monacoEditor = monaco.editor.create(document.getElementById("container"), {
+      monacoEditor = monaco.editor.create(monacoEditorRef.current, {
         value: "",
         language: "javascript",
         fontSize: 20
@@ -77,7 +87,7 @@ const Editor = ({ solution }) => {
 
   return (
     <EditorWrapper>
-      <div id="container" style={{ height: "40vh", width: "100%", margin: "50px 0px 50px 0px", border: "2px solid" }}></div>
+      <MonacoEditor ref={monacoEditorRef} />
       {/* <ArgumentInput placeholder="Argument goes here..." onChange={onArgumentChange} value={argument} /> */}
       <ButtonWrapper>
         {/* <button>Test</button> */}
