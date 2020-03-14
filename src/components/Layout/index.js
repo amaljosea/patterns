@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
-import Sidebar from '../sidebar';
+import Sidebar from '../Sidebar';
 import Header from '../header/index';
 import { ThemeProvider } from 'styled-components';
 
