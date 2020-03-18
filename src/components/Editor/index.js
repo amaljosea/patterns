@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react"
 import styled from "styled-components"
 import Console from '../Console/index2'
-import * as monaco from 'monaco-editor';
 
 const EditorWrapper = styled.div`
 `
@@ -75,13 +74,15 @@ const Editor = ({ solution }) => {
 
   useEffect(() => {
     if (monacoEditorRef.current) {
-      model = monaco.editor.createModel("");
-      monacoEditor = monaco.editor.create(monacoEditorRef.current, {
-        value: "",
-        language: "javascript",
-        fontSize: 20
-      });
-      monacoEditor.setModel(model);
+      import("monaco-editor").then(monaco => {     
+        model = monaco.editor.createModel("");
+        monacoEditor = monaco.editor.create(monacoEditorRef.current, {
+          value: "",
+          language: "javascript",
+          fontSize: 20
+        });
+        monacoEditor.setModel(model);
+    });
     }
   }, [])
 
